@@ -1,0 +1,1289 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- /*----------------------------------- -->
+  <!-- |  Código escrito por Ramiro Yaben  | -->
+  <!-- |  ramiroyaben@gmail.com            | -->
+  <!-- -----------------------------------*/ -->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestionamiento de pedidos de insumos</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Esta sección de script permite agregar/eliminar artículos -->
+    <script type='application/json' id='database'>
+        {   
+            "items": [
+                {
+                    "name": "Resma Bookcel",
+                    "category": "Resmas",
+                    "attributes": "[['A3', 'A4', 'A5', 'A5 apaisado', 'Cuadrado'], ['Lisa', 'Rayada', 'Punteada', 'Cuadriculada'], ['125 hojas', '250 hojas', '500 hojas'], ['Cosido', 'Anillado']]"
+                },
+        
+                {
+                    "name": "Resma Tempo",
+                    "category": "Resmas",
+                    "attributes": "[['A4'], ['Lisa'], ['500 hojas']]"
+                },
+
+                {
+                    "name": "Agenda perpetua",
+                    "category": "Interiores impresos",
+                    "attributes": "[['A5']]"
+                },
+
+                {
+                    "name": "Recetario de cocina",
+                    "category": "Interiores impresos",
+                    "attributes": "[['A5 apaisado']]"
+                },
+
+                {
+                    "name": "Papel Kraft",
+                    "category": "Papeles",
+                    "attributes": "[['125 gr', '200 gr'], ['A4'], ['50 hojas']]"
+                },
+
+                {
+                    "name": "Cartulina lisa",
+                    "category": "Papeles",
+                    "attributes": "[['130 gr', '180 gr'], ['A4'], ['10 hojas'], ['Naranja', 'Salmón', 'Rosa', 'Verde', 'Amarillo', 'Celeste']]"
+                },
+
+                {
+                    "name": "Papel chambril",
+                    "category": "Papeles",
+                    "attributes": "[['240 gr'], ['A4'], ['20 hojas'], ['Blanco']]"
+                },
+
+                {
+                    "name": "Cartón gris",
+                    "category": "Cartones Kappa",
+                    "attributes": "[['1,5 mm', '2 mm'], ['A4', 'A5'], ['10 u.', '20 u.']]"
+                },
+
+                {
+                    "name": "Lomo de cartón gris",
+                    "category": "Cartones Kappa",
+                    "attributes": "[['2 mm'], ['A4', 'A5'], ['5 u.']]"
+                },
+
+                {
+                    "name": "Tela capricho",
+                    "category": "Telas convencionales",
+                    "attributes": "[['0,5 m', '1 m'], ['Blanco']]"
+                },
+
+                {
+                    "name": "Gabardina lisa",
+                    "category": "Telas convencionales",
+                    "attributes": "[['0,5 m', '1 m']]"
+                },
+
+                {
+                    "name": "Tela provenzal",
+                    "category": "Telas convencionales",
+                    "attributes": "[['0,5 m', '1 m']]"
+                },
+
+                {
+                    "name": "Lona sintética",
+                    "category": "Telas convencionales",
+                    "attributes": "[['0,5 m', '1 m']]"
+                },
+
+                {
+                    "name": "Gabardina de poliéster estampada",
+                    "category": "Telas convencionales",
+                    "attributes": "[['0,5 m', '1 m']]"
+                },
+
+                {
+                    "name": "Gabardina de algodón estampada",
+                    "category": "Telas convencionales",
+                    "attributes": "[['0,5 m', '1 m']]"
+                },
+
+                {
+                    "name": "Loneta de algodón estampada",
+                    "category": "Telas convencionales",
+                    "attributes": "[['0,5 m', '1 m']]"
+                },
+
+                {
+                    "name": "Tela tornasolada",
+                    "category": "Telas no convencionales",
+                    "attributes": "[['0,5 m', '1 m']]"
+                },
+
+                {
+                    "name": "Tela holográfica",
+                    "category": "Telas no convencionales",
+                    "attributes": "[['0,5 m', '1 m']]"
+                },
+
+                {
+                    "name": "Tela espejada",
+                    "category": "Telas no convencionales",
+                    "attributes": "[['0,5 m', '1 m']]"
+                },
+
+                {
+                    "name": "Tela glitter",
+                    "category": "Telas no convencionales",
+                    "attributes": "[['0,5 m', '1 m']]"
+                },
+
+                {
+                    "name": "Cuerina",
+                    "category": "Telas no convencionales",
+                    "attributes": "[['0,5 m', '1 m'], ['Negro', 'Rosa', 'Azul', 'Marrón']]"
+                },
+
+                {
+                    "name": "Cinta capitel",
+                    "category": "Cintas",
+                    "attributes": "[['1 m'], ['Rojo', 'Negro', 'Celeste', 'Amarillo']]"
+                },
+
+                {
+                    "name": "Cinta señaladora lisa",
+                    "category": "Cintas",
+                    "attributes": "[['1 m'], ['0,7 cm']]"
+                },
+
+                {
+                    "name": "Cinta señaladora trigal",
+                    "category": "Cintas",
+                    "attributes": "[['1 m'], ['1 cm'], ['Troquelada']]"
+                },
+
+                {
+                    "name": "Rollo cerrado de cinta trigal",
+                    "category": "Cintas",
+                    "attributes": "[['10 m'], ['1 cm'], ['Troquelada']]"
+                },
+
+                {
+                    "name": "Rollo cerrado de cinta lisa",
+                    "category": "Cintas",
+                    "attributes": "[['10 m'], ['0,7 cm']]"
+                },
+
+                {
+                    "name": "Elástico bretel",
+                    "category": "Elásticos",
+                    "attributes": "[['1 m'], ['0,6 cm']]"
+                },
+
+                {
+                    "name": "Elástico con lurex",
+                    "category": "Elásticos",
+                    "attributes": "[['1 m'], ['1 cm'], ['Colores varios']]"
+                },
+
+                {
+                    "name": "Paquete cerrado de elástico bretel",
+                    "category": "Elásticos",
+                    "attributes": "[['20 m'], ['0,6 cm']]"
+                },
+
+                {
+                    "name": "Paquete cerrado de elástico con lurex",
+                    "category": "Elásticos",
+                    "attributes": "[['20 m'], ['1 cm']]"
+                },
+
+                {
+                    "name": "Hilo de nylon blanco",
+                    "category": "Hilos",
+                    "attributes": "[['Común', 'N°60'], ['100 m', '1500 m'], ['Genérico', 'Vahe']]"
+                },
+
+                {
+                    "name": "Hilo blanco",
+                    "category": "Hilos",
+                    "attributes": "[['3000 m'], ['Vahe']]"
+                },
+
+                {
+                    "name": "Hilo de yute",
+                    "category": "Hilos",
+                    "attributes": "[['40 m']]"
+                },
+
+                {
+                    "name": "Hilo encerado",
+                    "category": "Hilos",
+                    "attributes": "[['70 m']]"
+                },
+
+                {
+                    "name": "Pinceleta de cerda",
+                    "category": "Pinceletas",
+                    "attributes": "[['N°1', 'N°2', 'N°3', 'N°4', 'N°5']]"
+                },
+
+                {
+                    "name": "Brocha",
+                    "category": "Pinceletas",
+                    "attributes": "[]"
+                },
+
+                {
+                    "name": "Aguja",
+                    "category": "Herramientas de trabajo",
+                    "attributes": "[['Curva', 'Recta']]"
+                },
+
+                {
+                    "name": "Punzón con mango de madera",
+                    "category": "Herramientas de trabajo",
+                    "attributes": "[]"
+                },
+
+                {
+                    "name": "Plegadera",
+                    "category": "Herramientas de trabajo",
+                    "attributes": "[['Madera', 'Acrílico'], ['15 cm']]"
+                },
+
+                {
+                    "name": "Triángulo de corte",
+                    "category": "Herramientas de trabajo",
+                    "attributes": "[['2 mm']]"
+                },
+
+                {
+                    "name": "Cutter",
+                    "category": "Herramientas de trabajo",
+                    "attributes": "[['Grande']]"
+                },
+
+                {
+                    "name": "Repuesto de cuchilla para cutter",
+                    "category": "Herramientas de trabajo",
+                    "attributes": "[['Grande']]"
+                },
+
+                {
+                    "name": "Tabla de corte",
+                    "category": "Herramientas de trabajo",
+                    "attributes": "[['A3']]"
+                },
+
+                {
+                    "name": "Pegamento",
+                    "category": "Herramientas de trabajo",
+                    "attributes": "[['1 kg'], ['Fortex A-20']]"
+                },
+
+                {
+                    "name": "Regla de acero para corte",
+                    "category": "Herramientas de trabajo",
+                    "attributes": "[['30 cm']]"
+                },
+
+                {
+                    "name": "Ojalillos",
+                    "category": "Herramientas de colocado de elásticos",
+                    "attributes": "[['450'], ['100 u.', '1000 u.'], ['Dorado', 'Plateado']]"
+                },
+
+                {
+                    "name": "Pinza",
+                    "category": "Herramientas de colocado de elásticos",
+                    "attributes": "[['Sacabocados', 'Ojalilladora']]"
+                },
+
+                {
+                    "name": "Máquina manual de mesa simple función",
+                    "category": "Herramientas de colocado de elásticos",
+                    "attributes": "[]"
+                },
+
+                {
+                    "name": "Matriz para colocar ojalillos",
+                    "category": "Herramientas de colocado de elásticos",
+                    "attributes": "[['450']]"
+                },
+
+                {
+                    "name": "Matriz sacabocados 4 con pedestal",
+                    "category": "Herramientas de colocado de elásticos",
+                    "attributes": "[]"
+                },
+
+                {
+                    "name": "Esquinero",
+                    "category": "Herramientas de colocado de elásticos",
+                    "attributes": "[['Dorado'], ['1 u.', '10 u.', '100 u.']]"
+                },
+
+                {
+                    "name": "Combo",
+                    "category": "Otros",
+                    "attributes": "[['1', '2', '3']]"
+                },
+
+                {
+                    "name": "Envío",
+                    "category": "Otros",
+                    "attributes": "[['EPICK', 'Correo Argentino']]"
+                }
+            ],
+
+            "prices": [
+                { "item": "['ResmaBookcelA3Lisa250hojasCosido']", "price": 820 },
+                { "item": "['ResmaBookcelA3Lisa500hojasCosido']", "price": 1580 },
+                { "item": "['ResmaBookcelA3Rayada125hojasCosido', 'ResmaBookcelA3Cuadriculada125hojasCosido']", "price": 780 },
+                { "item": "['ResmaBookcelA3Rayada250hojasCosido', 'ResmaBookcelA3Cuadriculada250hojasCosido']", "price": 1510 },
+                { "item": "['ResmaBookcelA3Rayada500hojasCosido', 'ResmaBookcelA3Cuadriculada500hojasCosido']", "price": 2960 },
+                { "item": "['ResmaBookcelA4Lisa250hojasCosido']", "price": 390 },
+                { "item": "['ResmaBookcelA4Lisa500hojasCosido']", "price": 720 },
+                { "item": "['ResmaBookcelA4Rayada125hojasCosido', 'ResmaBookcelA4Punteada125hojasCosido', 'ResmaBookcelA4Cuadriculada125hojasCosido']", "price": 460 },
+                { "item": "['ResmaBookcelA4Rayada250hojasCosido', 'ResmaBookcelA4Punteada250hojasCosido', 'ResmaBookcelA4Cuadriculada250hojasCosido']", "price": 870 },
+                { "item": "['ResmaBookcelA4Rayada500hojasCosido', 'ResmaBookcelA4Punteada500hojasCosido', 'ResmaBookcelA4Cuadriculada500hojasCosido']", "price": 1680 },
+                { "item": "['ResmaBookcelA5Lisa250hojasCosido', 'ResmaBookcelA5Lisa250hojasAnillado']", "price": 280 },
+                { "item": "['ResmaBookcelA5Lisa500hojasCosido', 'ResmaBookcelA5Lisa500hojasAnillado']", "price": 520 },
+                { "item": "['ResmaBookcelA5Rayada125hojasCosido', 'ResmaBookcelA5Punteada125hojasCosido', 'ResmaBookcelA5Cuadriculada125hojasCosido']", "price": 350 },
+                { "item": "['ResmaBookcelA5Rayada250hojasCosido', 'ResmaBookcelA5Punteada250hojasCosido', 'ResmaBookcelA5Cuadriculada250hojasCosido']", "price": 620 },
+                { "item": "['ResmaBookcelA5Rayada500hojasCosido', 'ResmaBookcelA5Punteada500hojasCosido', 'ResmaBookcelA5Cuadriculada500hojasCosido']", "price": 1190 },
+                { "item": "['ResmaBookcelA5Rayada250hojasAnillado']", "price": 475 },
+                { "item": "['ResmaBookcelA5Rayada500hojasAnillado']", "price": 890 },
+                { "item": "['ResmaBookcelA5apaisadoLisa250hojasCosido']", "price": 400 },
+                { "item": "['ResmaBookcelA5apaisadoLisa500hojasCosido']", "price": 745 },
+                { "item": "['ResmaBookcelCuadradoLisa250hojasCosido']", "price": 380 },
+                { "item": "['ResmaBookcelCuadradoLisa500hojasCosido']", "price": 730 },
+                { "item": "['ResmaBookcelCuadradoRayada125hojasCosido']", "price": 355 },
+                { "item": "['ResmaBookcelCuadradoRayada250hojasCosido']", "price": 670 },
+                { "item": "['ResmaBookcelCuadradoRayada500hojasCosido']", "price": 1290 },
+                { "item": "['ResmaTempoA4Lisa500hojas']", "price": 599 },
+                { "item": "['AgendaperpetuaA5']", "price": 390 },
+                { "item": "['RecetariodecocinaA5apaisado']", "price": 320 },
+                { "item": "['PapelKraft125grA450hojas']", "price": 240 },
+                { "item": "['PapelKraft200grA450hojas']", "price": 265 },
+                { "item": "['Cartulinalisa130grA410hojasNaranja', 'Cartulinalisa130grA410hojasSalmón']", "price": 135 },
+                { "item": "['Cartulinalisa180grA410hojasRosa', 'Cartulinalisa180grA410hojasVerde', 'Cartulinalisa180grA410hojasAmarillo', 'Cartulinalisa180grA410hojasCeleste']", "price": 165 },
+                { "item": "['Papelchambril240grA420hojasBlanco']", "price": 165 },
+                { "item": "['Cartóngris2mmA410u.']", "price": 465 },
+                { "item": "['Cartóngris2mmA520u.']", "price": 465 },
+                { "item": "['Cartóngris1,5mmA520u.']", "price": 438 },
+                { "item": "['Lomodecartóngris2mmA55u.']", "price": 85 },
+                { "item": "['Lomodecartóngris2mmA45u.']", "price": 115 },
+                { "item": "['Telacapricho0,5mBlanco']", "price": 150 },
+                { "item": "['Telacapricho1mBlanco']", "price": 290 },
+                { "item": "['Gabardinalisa0,5m']", "price": 390 },
+                { "item": "['Gabardinalisa1m']", "price": 700 },
+                { "item": "['Telaprovenzal0,5m', 'Lonasintética0,5m']", "price": 370 },
+                { "item": "['Telaprovenzal1m', 'Lonasintética1m']", "price": 690 },
+                { "item": "['Gabardinadepoliésterestampada0,5m']", "price": 425 },
+                { "item": "['Gabardinadepoliésterestampada1m']", "price": 799 },
+                { "item": "['Gabardinadealgodónestampada0,5m']", "price": 480 },
+                { "item": "['Gabardinadealgodónestampada1m']", "price": 899 },
+                { "item": "['Lonetadealgodónestampada0,5m']", "price": 450 },
+                { "item": "['Lonetadealgodónestampada1m']", "price": 850 },
+                { "item": "['Telatornasolada0,5m', 'Telaholográfica0,5m', 'Telaespejada0,5m', 'Telaglitter0,5m']", "price": 750 },
+                { "item": "['Telatornasolada1m', 'Telaholográfica1m', 'Telaespejada1m', 'Telaglitter1m']", "price": 1390 },
+                { "item": "['Cuerina0,5mNegro', 'Cuerina0,5mRosa', 'Cuerina0,5mAzul', 'Cuerina0,5mMarrón']", "price": 580 },
+                { "item": "['Cuerina1mNegro', 'Cuerina1mRosa', 'Cuerina1mAzul', 'Cuerina1mMarrón']", "price": 1099 },
+                { "item": "['Cintacapitel1mNegro', 'Cintacapitel1mRojo', 'Cintacapitel1mCeleste', 'Cintacapitel1mAmarillo']", "price": 62 },
+                { "item": "['Cintaseñaladoralisa1m0,7cm']", "price": 19 },
+                { "item": "['Cintaseñaladoratrigal1m1cmTroquelada']", "price": 46 },
+                { "item": "['Rollocerradodecintatrigal10m1cmTroquelada']", "price": 415 },
+                { "item": "['Rollocerradodecintalisa10m0,7cm']", "price": 150 },
+                { "item": "['Elásticobretel1m0,6cm']", "price": 49 },
+                { "item": "['Elásticoconlurex1m1cmColoresvarios']", "price": 52 },
+                { "item": "['Paquetecerradodeelásticobretel20m0,6cm']", "price": 920 },
+                { "item": "['Paquetecerradodeelásticoconlurex20m1cm']", "price": 950 },
+                { "item": "['HilodenylonblancoComún100mGenérico']", "price": 115 },
+                { "item": "['HilodenylonblancoN°601500mVahe']", "price": 399 },
+                { "item": "['Hiloblanco3000mVahe']", "price": 525 },
+                { "item": "['Hilodeyute40m']", "price": 105 },
+                { "item": "['Hiloencerado70m']", "price": 128 },
+                { "item": "['PinceletadecerdaN°1']", "price": 69 },
+                { "item": "['PinceletadecerdaN°2']", "price": 80 },
+                { "item": "['PinceletadecerdaN°3']", "price": 96 },
+                { "item": "['PinceletadecerdaN°4']", "price": 113 },
+                { "item": "['PinceletadecerdaN°5']", "price": 125 },
+                { "item": "['Brocha']", "price": 130 },
+                { "item": "['AgujaCurva', 'AgujaRecta']", "price": 27 },
+                { "item": "['Punzónconmangodemadera']", "price": 247 },
+                { "item": "['PlegaderaMadera15cm']", "price": 420 },
+                { "item": "['PlegaderaAcrílico15cm']", "price": 590 },
+                { "item": "['Triángulodecorte2mm']", "price": 325 },
+                { "item": "['CutterGrande']", "price": 240 },
+                { "item": "['RepuestodecuchillaparacutterGrande']", "price": 50 },
+                { "item": "['TabladecorteA3']", "price": 1200 },
+                { "item": "['Pegamento1kgFortexA-20']", "price": 643 },
+                { "item": "['Regladeaceroparacorte30cm']", "price": 299 },
+                { "item": "['Ojalillos450100u.Dorado', 'Ojalillos450100u.Plateado']", "price": 139 },
+                { "item": "['Ojalillos4501000u.Dorado', 'Ojalillos4501000u.Plateado']", "price": 1050 },
+                { "item": "['PinzaSacabocados']", "price": 1165 },
+                { "item": "['PinzaOjalilladora']", "price": 590 },
+                { "item": "['Máquinamanualdemesasimplefunción']", "price": 2990 },
+                { "item": "['Matrizparacolocarojalillos450']", "price": 460 },
+                { "item": "['Matrizsacabocados4conpedestal']", "price": 590 },
+                { "item": "['EsquineroDorado1u.']", "price": 48 },
+                { "item": "['EsquineroDorado10u.']", "price": 380 },
+                { "item": "['EsquineroDorado100u.']", "price": 3400 },
+                { "item": "['Combo1']", "price": 1780 },
+                { "item": "['Combo2']", "price": 1890 },
+                { "item": "['Combo3']", "price": 3850 },
+                { "item": "['EnvíoEPICK']", "price": 360 }
+            ]
+        }
+    </script>
+    
+</head>
+<body>
+    <p class='title'>Gestionamiento de pedidos de insumos</p>
+    <div id='navigation-bar'>
+        <button class='navigation-button'>Pedido actual</button>
+        <button class='navigation-button'>Lista de pedidos</button>
+    </div>
+
+    <div id='main-order'>
+        <div id='search-bar'>
+            <div id='search-basics' class='search-parameter'>
+                <div>
+                    <input id='check-get-all' type='checkbox' checked='checked'>
+                    <label for='check-get-all'>Obtener todos los artículos</label>
+                    &nbsp;&nbsp;&nbsp;
+                    <input id='check-custom' type='checkbox'>
+                    <label for='check-custom'>Artículo personalizado</label>
+                </div>
+                <div>
+                    <p>Enter:&nbsp;</p>
+                    <button id='query-button'>Consultar</button>
+                </div>
+            </div>
+            
+            <div id='search-parameters'>
+                <div id='categories' class='search-parameter'>
+                    <label>Categoría:&nbsp;</label>
+                    <select id='categories-list' name='categories-list'>
+                        <option>Todas</option>
+                    </select>
+                </div>
+    
+                <div id='item-name' class='search-parameter'>
+                    <label for='name-input'>Nombre:&nbsp;</label>
+                    <input id='name-input' type='text'>
+                </div>
+            </div>
+        </div>
+    
+        <div id='elements-list'>
+            
+        </div>
+        <div id='custom-list' style='display:none;'>
+            <div id='custom-item' style='width:100%'>
+                <div style='width:80%;display:flex;align-items:center;'>
+                    &nbsp;
+                    <button disabled id='custom-add'><b>+</b></button>
+                    <input id='custom-amount' type='number' min='1' max='100' step='1' value='1'>
+                    &nbsp;
+                    <input id='custom-name'>
+                </div>
+    
+                <div style='width:20%;display:flex;align-items:center;justify-content:center;'>
+                    <div style='display:flex;justify-content:center;align-items:center;width:50%;'>
+                        <p>$</p>
+                        <input id='custom-price' value='0'>
+                    </div>
+                    <div style='display:flex;justify-content:center;align-items:center;width:50%;'>
+                        <p style='color:red;'><b>-&nbsp;</b></p>
+                        <input id='custom-discount' type='number' min='0' max='99' step='10' value='0'>
+                        <p style='color:red;'><b>&nbsp;%</b></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div id='current-order'>
+            <div style='display:flex;justify-content:space-between;margin:2%10%4%10%;'>
+                <img class='order-image' src='logo.png' alt='logo'>
+                <div style='display:flex;justify-content:center;align-items:center;'>
+                    <label for='order-id'>Pedido&nbsp;</label>
+                    <input id='order-id' class='transparent-input' type='text' style='text-align:center;width:30%;'>
+                </div>
+            </div>
+            <div id='added-items'>
+    
+            </div>
+            <hr id='order-cut'>
+            <div id='order-totals'>
+                <label>Subtotal y total</label>
+                <div style='display:flex;justify-content:center;'>
+                    <label><del>$</del></label>
+                    <label id='total-subtotal'>0</label>
+                </div>
+                <div style='display:flex;justify-content:center;'>
+                    <label><b>$</b></label>
+                    <label id='total-total'>0</label>
+                </div>
+            </div>
+    
+            <div id='order-info'>
+                <div style='display:flex;justify-content:space-between;'>
+                    <label style='width:40%' for='order-client'><b>Cliente:</b>&nbsp;<input id='order-client' class='transparent-input' style='width:70%;'></label>
+                    <label style='width:25%' for='order-date'><b>Fecha:</b>&nbsp;<input id='order-date' class='transparent-input' type='date' style='width:60%;'></label>
+                    <label style='width:35%' for='order-phone'><b>Teléfono:</b>&nbsp;<input id='order-phone' class='transparent-input' style='width:60%;'></label>
+                </div>
+                <div>
+                    <label for='order-notes-check'><input id='order-notes-check' type='checkbox' checked='checked'>Notas del vendedor</label>
+                    <label for='print-mode'><input id='print-mode' type='checkbox'>⎙</label>
+                </div>
+                <textarea id='order-notes'></textarea>
+            </div>
+        </div>
+    
+        <div id='order-actions'>
+            <button id='clear-order'>Vaciar pedido</button>
+            <button id='save-order'>Guardar pedido</button>
+        </div>
+    </div>
+
+    <div id='orders-list'>
+        
+    </div>
+</body>
+<style>
+    * {
+        font-size: large;
+        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+    }
+
+    body {
+        background-color: lightgray;
+        min-width: 730px;
+        max-width: 1000px;
+        margin: auto;
+    }
+
+    .search-parameter {
+        display: flex;
+        flex-direction: row;
+        justify-content: left;
+        align-items: center;
+        margin: 1% 2% 1% 2%;
+    }
+
+    .retrieved-item, #custom-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 1% 1% 1% 1%;
+        border: 1px solid black;
+    }
+
+    .retrieved-item:hover, #custom-item:hover, .previous-order:hover {
+        background-color:lightskyblue;
+        -webkit-transition: all 0.5s ease;
+        -moz-transition: all 0.5s ease;
+        -o-transition: all 0.5s ease;
+        transition: all 0.5s ease;
+    }
+
+    .section-1, .section-2 {
+        display: flex;
+        align-items: center;
+    }
+
+    .section-1 {
+        width: 35%;
+    }
+
+    .section-2 {
+        width: 20%;
+        justify-content: center;
+    }
+
+    .item-attributes {
+        display: flex;
+        width: 40%
+    }
+
+    .attributes-combo {
+        width: 25%;
+    }
+
+    .add-name {
+        font-size: medium;
+    }
+
+    .add-amount {
+        width: 12%;
+        text-align: center;
+    }
+
+    .add-price, #custom-price {
+        height: 50%;
+        width: 55%;
+    }
+
+    .add-discount, #custom-discount {
+        text-align: center;
+        height: 50%;
+        width: 45%;
+        color: red;
+    }
+
+    .title {
+        display: block;
+        text-align: center;
+        font-size: larger;
+        margin: 2% auto 2% auto;
+    }
+
+    .failed-query {
+        text-align: center;
+        margin: 1% 1%;
+    }
+
+    .transparent-input {
+        background-color: transparent;
+        border: none;
+    }
+
+    .order-image {
+        width: 35%;
+        height: 5%;
+    }
+
+    .previous-order {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 1% 1% 0 1%;
+    }
+
+    .previous-order label {
+        margin-block-end: 0.2em;
+        margin-block-start: 0.2em;
+        margin-left: 1%;
+    }
+
+    .delete-order {
+        color: darkred;
+    }
+
+    .load-order {
+        color: darkgreen;
+    }
+
+    .delete-order, .load-order {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+    }
+
+    .navigation-button {
+        width: 50%;
+        background-color: slategray;
+        color: whitesmoke;
+        border: 1px dotted black
+    }
+
+    #search-bar, #search-basics, #search-basics div, #search-parameters, #order-info, #navigation-bar, #order-actions, #orders-list, #custom-list {
+        display: flex;
+    }
+
+    #search-bar, #elements-list, #current-order, #navigation-bar, #order-actions, #orders-list, #custom-list {
+        background-color: whitesmoke;
+        border: 2px solid black;
+        border-radius: 4px;
+        width: 90%;
+        margin: 2% 5% 2% 5%;
+    }
+
+    #search-bar, #search-parameters, #orders-list {
+        flex-direction: column;
+    }
+
+    #search-basics {
+        justify-content: space-between;
+    }
+
+    #search-basics div {
+        align-items: center;
+        margin-top: -1%;
+        margin-bottom: -1%;
+    }
+
+    #query-button {
+        width: 100%;
+    }
+
+    #categories-list {
+        width: 50%
+    }
+
+    #name-input {
+        width: 50%;
+    }
+
+    #item-name {
+        margin-bottom: 2%;
+    }
+
+    #custom-amount {
+        width: 5.4%;
+        text-align: center;
+    }
+
+    #custom-name {
+        width: 75%;
+    }
+
+    #added-items {
+        display: grid;
+        grid-template-columns: 5% 65% 15% 15%;
+        margin: 1% 2% 1% 2%;
+    }
+
+    #order-cut {
+        border: 2px solid gray;
+        margin: 2%;
+    }
+
+    #order-totals {
+        display: grid;
+        grid-template-columns: 70% 15% 15%;
+        margin: 1% 2% 1% 2%;
+    }
+
+    #order-id {
+        border-bottom: 1px solid black;
+    }
+
+    #total-subtotal, .value-subtotal {
+        text-decoration: line-through;
+    }
+
+    #total-total {
+       font-weight: bold;
+    }
+
+    #order-info {
+        flex-direction: column;
+        margin: 4% 2% 2% 2%;
+    }
+
+    #order-notes-check {
+        margin: 4% 2px 1% 0;
+    }
+
+    #order-date {
+        font-size: small;
+    }
+
+    #order-notes {
+        resize: vertical;
+    }
+
+    #orders-list {
+        padding-bottom: 1%;
+    }
+
+    #order-actions button {
+        width: 50%;
+    }
+</style>
+<script>
+    $(document).ready( function($) {
+
+        class Handler {
+            constructor() {
+                this.itemsAmount = 0;
+            }
+
+            //Afina los detalles iniciales para respaldar las funcionalidades centrales.
+            initialize() {
+                //Verifica la existencia de la lista de pedidos en localStorage.
+                handler.createOrdersList();
+
+                //Oculta los parámetros de búsqueda.
+                $('#search-parameters').hide();
+
+                //Oculta la lista de elementos obtenidos por consulta.
+                $('#elements-list').hide();
+
+                //Obtiene las categorías de los items de la base.
+                this.retrieveCategories();
+
+                //Oculta la pestaña de lista de pedidos.
+                $('#orders-list').hide();
+
+                //Carga todos los pedidos anteriores en lista.
+                this.ordersQuery();
+            }
+
+            //Pone a escuchar los eventos de los controles.
+            eventsListening() {
+                $(document).on('keypress', function(event) {
+                    if ($('#search-bar').is(':hover') && event.keyCode == 13) {
+                        handler.itemQuery();
+                    }
+                });
+
+                $('.navigation-button').on('click', function() {
+                    if ($(this).index() === 0) {
+                        $('#main-order').show();
+                        $('#orders-list').hide();
+                    } else if ($(this).index() === 1) {
+                        $('#main-order').hide();
+                        $('#orders-list').show();
+                    }
+                });
+
+                $('#check-get-all').on('change', function() {
+                    if ($(this).is(':checked')) {
+                        $('#search-parameters').slideUp(300);
+                    } else {
+                        $('#search-parameters').slideDown(300);
+                    }
+                });
+
+                $('#check-custom').on('change', function() {
+                    if ($(this).is(':checked')) {
+                        $('#custom-list').slideDown(300);
+                    } else {
+                        $('#custom-list').slideUp(300);
+                    }
+                });
+
+                $('#query-button').on('click', function() {
+                    handler.itemQuery();
+                });
+
+                $('#elements-list').on('click', '.add-item', function() {
+                    function arrangeAttributes(end) {
+                        let finalString = '\n(';
+
+                        for (let i = 0; i < end; i++) {
+                            finalString += $(`.item-attributes:eq(${index}) .attributes-combo:eq(${i}) option:selected`).text();
+                            if (i != (end - 1)) {
+                                finalString += ',\n';
+                            }
+                        }
+
+                        finalString += ')';
+                        return finalString;
+                    }
+
+                    let index = $(this).closest('.retrieved-item').index();
+
+                    let amount = parseInt($(`.add-amount:eq(${index})`).val());
+                    let name = $(`.add-name:eq(${index})`).text();
+                    let attributes = arrangeAttributes($(`.item-attributes:eq(${index}) .attributes-combo`).length)
+                    let price = parseInt($(`.add-price:eq(${index})`).val());
+                    let discount = parseInt($(`.add-discount:eq(${index})`).val());
+
+                    handler.addToOrder(amount, name + attributes, price, discount);
+                });
+
+                $('#custom-add').on('click', function() {
+                    let amount = parseInt($('#custom-amount').val());
+                    let name = $('#custom-name').val();
+                    let price = parseInt($('#custom-price').val());
+                    let discount = parseInt($('#custom-discount').val());
+
+                    handler.addToOrder(amount, name, price, discount);
+                });
+
+                $('#elements-list').on('change', '.attributes-combo', function() {
+                    handler.priceQuery($(this));
+                });
+
+                $('#elements-list').on('change', '.add-price', function() {
+                    let index = $(this).closest('.retrieved-item').index();
+
+                    if ($(`.add-price:eq(${index})`).val() <= 0) {
+                        $(`.add-item:eq(${index})`).attr('disabled', true);
+                    } else {
+                        $(`.add-item:eq(${index})`).attr('disabled', false);
+                    }
+                });
+
+                $('#custom-price').on('change', function() {
+                    if ($(this).val() <= 0) {
+                        $('#custom-add').attr('disabled', true);
+                    } else {
+                        $('#custom-add').attr('disabled', false);
+                    }
+                });
+
+                $(document).on('mouseenter', '.added-item-name', function() {
+                    handler.paintAddedItem($(this), 'tomato');
+                });
+
+                $(document).on('mouseleave', '.added-item-name', function() {
+                    handler.paintAddedItem($(this), 'whitesmoke');
+                });
+
+                $(document).on('click', '.added-item-name', function() {
+                    handler.removeFromOrder($(this));
+                });
+
+                $('#order-notes-check').on('change', function() {
+                    if ($(this).is(':checked')) {
+                        $('#order-notes').slideDown(300);
+                    } else {
+                        $('#order-notes').slideUp(300);
+                    }
+                });
+
+                $('#print-mode').on('change', function() {
+                    if ($(this).is(':checked')) {
+                        $('.title:eq(0)').slideUp(200);
+                        $('#search-bar').slideUp(200);
+                        $('#navigation-bar').slideUp(200);
+                        $('#elements-list').slideUp(200);
+                        $('#custom-list').slideUp(200);
+                        $('#order-actions').slideUp(200);
+                    } else {
+                        $('.title:eq(0)').show(200);
+                        $('#search-bar').show(200);
+                        $('#navigation-bar').show(200);
+                        $('#elements-list').show(200);
+                        $('#custom-list').show(200);
+                        $('#order-actions').show(200);
+                    }
+                });
+
+                $('.previous-order').on({
+                    mouseover: function() {
+                        $(this).find('button').show();
+                    },
+                    mouseleave: function() {
+                        $(this).find('button').hide();
+                    }
+                });
+
+                $('.load-order').on('click', function() {
+                    handler.loadOrder();
+                });
+
+                $('.delete-order').on('click', function() {
+                    handler.deleteOrder();
+                });
+
+                $('#clear-order').on('click', function() {
+                    handler.clearOrder();
+                });
+
+                $('#save-order').on('click', function() {
+                    handler.saveOrder();
+                });
+            }
+
+            //Colora visualmente un item agregado al pedido.
+            paintAddedItem(item, color) {
+                let index = item.attr('class').slice(27, item.attr('class').length);
+                let newCSS = {
+                    'background-color': color,
+                    '-webkit-transition': 'all 0.5s ease',
+                    '-moz-transition': 'all 0.5s ease',
+                    '-o-transition': 'all 0.5s ease',
+                    'transition': 'all 0.5s ease'
+                };
+
+                item.css(newCSS);
+                $(`.added-item-${index}`).css(newCSS);
+            }
+
+            //Recorre los items del JSON y busca todas las categorías.
+            retrieveCategories() {
+                let result = JSON.parse($('#database').html());
+                let categoriesAdded = [];
+
+                result.items.forEach(function(element) {
+                    if (!categoriesAdded.includes(element.category)) {
+                        categoriesAdded.push(element.category);
+                        $('#categories-list').append(`<option>${element.category}</option>`);
+                    }
+                });
+            }
+
+            //Lee la base de datos en JSON según parámetros y devuelve visualmente los elementos coincidentes.
+            itemQuery() {
+                let result = JSON.parse($('#database').html());
+
+                //Borra todos los elementos de alguna consulta previa.
+                $('#elements-list').hide();
+                $('#elements-list .failed-query').remove();
+                $('#elements-list .retrieved-item').remove();
+                    
+                //Si el JSON no tiene elementos en el array interno, se avisa visualmente..
+                if (result.items.length === 0) {
+                    $('#elements-list').append(`<div class='failed-query'>No hay elementos en la base de datos.</div>`);
+
+                //De lo contrario, se hace la búsqueda.
+                } else {
+                    result.items.forEach(function(element, index) {
+                        let visualItem = `
+                        <div id='retrieved-item-${index}' class='retrieved-item'>
+                            <div class='section-1'>
+                                &nbsp;
+                                <button class='add-item'><b>+</b></button>
+                                <input class='add-amount' type='number' min='1' max='100' step='1' value='1'>
+                                &nbsp;
+                                <label class='add-name'>${element.name}</label>
+                            </div>
+
+                            <div class='section-2'>
+                                <div style='display:flex;justify-content:center;align-items:center;width:50%;'>
+                                    <p>$</p>
+                                    <input class='add-price'></input>
+                                </div>
+                                <div style='display:flex;justify-content:center;align-items:center;width:50%;'>
+                                    <p style='color:red;'><b>-&nbsp;</b></p>
+                                    <input class='add-discount' type='number' min='0' max='99' step='10' value='0'>
+                                    <p style='color:red;'><b>&nbsp;%</b></p>
+                                </div>
+                            </div>
+                        </div>`;
+
+                        function finishAdd() {
+                            $('#elements-list').append(visualItem);
+                            $(`#retrieved-item-${index} .section-1`).after(handler.generateAttributesCombo(eval(element.attributes)));
+                            handler.priceQuery($(`.add-discount:eq(${index})`));
+                        }
+
+                        //Si se quiere traer todos los elementos, se traen sin filtro alguno.
+                        if ($('#check-get-all').is(':checked')) {
+                            finishAdd();
+                        
+                        //De lo contrario, se compara el elemento con los parámetros del usuario.
+                        } else {
+                            let queriedCategory = $('#categories-list').val();
+                            let queriedName = $('#name-input').val();
+                            let itemCategory = element.category;
+
+                            //Si cumple con todos los parámetros, se agrega visualmente.
+                            if ((queriedCategory == 'Todas' || itemCategory == queriedCategory) && (element.name.toLowerCase().includes(queriedName.toLowerCase()))) {
+                                finishAdd();
+                            }
+                        }
+                    }, this);
+
+                    //Si ningún elemento cumple con los parámetros, se avisa visualmente.
+                    if ($('#elements-list div').length == 0) {
+                        $('#elements-list').append(`<div class='failed-query'>No hay elementos coincidentes.</div>`);
+                    }
+
+                    //Muestra la lista luego de la búsqueda.
+                    $('#elements-list').slideDown(300);
+                }
+            }
+
+            //Carga todo el historial de pedidos y lo muestra visualmente en lista.
+            ordersQuery() {
+                let ordersList = JSON.parse(localStorage.getItem('pedidos'));
+
+                ordersList.forEach(function(element) {
+                    $('#orders-list').append(`
+                        <div class='previous-order'>
+                            <label>${element.number}</label>
+                            <div style='margin-right:1%;'>
+                                <button class='delete-order' style='display:none;'>Borrar</button>
+                                <button class='load-order' style='display:none;'>Cargar</button>
+                            </div>
+                        </div>
+                    `);
+                });
+            }
+
+            //Trae el precio de una cadena de nombre con sus atributos.
+            priceQuery(item) {
+                let result = JSON.parse($('#database').html());
+                let index = item.closest('.retrieved-item').index();
+                let itemName = $(`.add-name:eq(${index})`).text().replace(/\s/g, '');
+                let itemAttributes = $(`.item-attributes:eq(${index}) .attributes-combo option:selected`).text().replace(/\s/g, '');
+                let price = 0;
+
+                result.prices.forEach(function(element) {
+                    let pricedItems = eval(element.item);
+                    
+                    for (let i = 0; i < pricedItems.length; i++) {
+                        if (pricedItems[i] === itemName + itemAttributes) {
+                            return price = element.price;
+                        }
+                    }
+                });
+
+                $(`.add-price:eq(${index})`).val(price);
+
+                if (price == 0) {
+                    $(`.add-item:eq(${index})`).prop('disabled', true);
+                } else {
+                    $(`.add-item:eq(${index})`).prop('disabled', false);
+                }
+            }
+
+            //Añade un item al pedido teniendo en cuenta su cantidad.
+            addToOrder(amount, name, price, discount) {
+                let subtotal = price * amount;
+                let total = price * amount - ((discount / 100) * (price * amount));
+                let itemsAmount = this.itemsAmount;
+
+                let visualAmount = `<label class='added-item-${itemsAmount}'>${amount}&nbsp;x</label>`;
+                let visualName = `<label class='added-item-name added-item-${itemsAmount}'>${name}</label>`;
+                let visualSubtotal = `<label class='added-item-${itemsAmount} value-subtotal' style='text-align:center;'>$${subtotal}</label>`;
+                let visualTotal = `<label class='added-item-${itemsAmount} value-total' style='text-align:center;'>$${total}</label>`;
+
+                //Agrega el item visual.
+                $('#added-items').append(visualAmount);
+                $('#added-items').append(visualName);
+                $('#added-items').append(visualSubtotal);
+                $('#added-items').append(visualTotal);
+                this.itemsAmount++;
+
+                //Recalcula los totales.
+                let currentSubtotal = parseInt($('#total-subtotal').text());
+                let currentTotal = parseInt($('#total-total').text());
+                $('#total-subtotal').text(currentSubtotal + subtotal);
+                $('#total-total').text(currentTotal + total);
+            }
+
+            //Borra determinado item del pedido, visual y lógicamente.
+            removeFromOrder(item) {
+                let index = item.attr('class').slice(27, item.attr('class').length);
+
+                //Recalcula los totales.
+                let subtotal = parseInt($(`.added-item-${index}:eq(2)`).text().slice(1));
+                let total = parseInt($(`.added-item-${index}:eq(3)`).text().slice(1));
+                let currentSubtotal = parseInt($('#total-subtotal').text());
+                let currentTotal = parseInt($('#total-total').text());
+
+                $('#total-subtotal').text(currentSubtotal - subtotal);
+                $('#total-total').text(currentTotal - total);
+
+                $(`.added-item-${index}`).remove();
+            }
+
+            //Borra todos los datos ingresados en el pedido actual.
+            clearOrder() {
+                $('#added-items').html('');
+                $('#total-subtotal').text('0');
+                $('#total-total').text('0');
+                $('#order-client').val('');
+                $('#order-date').val('');
+                $('#order-phone').val('');
+                $('#order-notes').val('');
+            }
+
+            //Guarda los datos de un pedido en el JSON exterior.
+            saveOrder() {
+                let getList = JSON.parse(localStorage.getItem('pedidos'));
+                let orderIndex = getList.findIndex(element => element.number == $('#order-id').val());
+
+                if ($('#order-id').val() == '') {
+                    return alert('El pedido debe tener un número o nombre identificatorio.');
+                }
+
+                if (orderIndex === undefined || orderIndex === -1) {
+                    getList.push({
+                        number: $('#order-id').val(),
+                        items: $('#added-items').html(),
+                        client: $('#order-client').val(),
+                        date: $('#order-date').val(),
+                        phone: $('#order-phone').val(),
+                        notes: $('#order-notes').val(),
+                        subtotal: $('#total-subtotal').text(),
+                        total: $('#total-total').text(),
+                        itemsAmount: this.itemsAmount
+                    });
+
+                    $('#orders-list').append(`
+                        <div class='previous-order'>
+                            <label>${$('#order-id').val()}</label>
+                            <div style='margin-right:1%;'>
+                                <button class='delete-order' style='display:none;'>Borrar</button>
+                                <button class='load-order' style='display:none;'>Cargar</button>
+                            </div>
+                        </div>
+                    `);
+                } else {
+                    getList[orderIndex].items = $('#added-items').html();
+                    getList[orderIndex].client = $('#order-client').val();
+                    getList[orderIndex].date = $('#order-date').val();
+                    getList[orderIndex].phone = $('#order-phone').val();
+                    getList[orderIndex].notes = $('#order-notes').val();
+                    getList[orderIndex].subtotal = $('#total-subtotal').text();
+                    getList[orderIndex].total = $('#total-total').text();
+                    getList[orderIndex].itemsAmount = this.itemsAmount;
+                }
+
+                localStorage.setItem('pedidos', JSON.stringify(getList));
+                alert('Se guardó el pedido exitosamente.')
+            }
+
+            //Carga un pedido específico en la pantalla de pedido actual para modificarlo.
+            loadOrder() {
+                let thisIndex = $('.previous-order:hover').index();
+                let loadedOrder = JSON.parse(localStorage.getItem('pedidos'))[thisIndex];
+
+                $('#added-items').html(loadedOrder.items);
+                $('#total-subtotal').text(loadedOrder.subtotal);
+                $('#total-total').text(loadedOrder.total);
+                $('#order-id').val(loadedOrder.number);
+                $('#order-client').val(loadedOrder.client);
+                $('#order-date').val(loadedOrder.date);
+                $('#order-phone').val(loadedOrder.phone);
+                $('#order-notes').val(loadedOrder.notes);
+                this.itemsAmount = loadedOrder.itemsAmount;
+
+                $('.navigation-button:eq(0)').click();
+            }
+
+            //Borra un pedido específico de la lista de pedidos.
+            deleteOrder() {
+                let thisIndex = $('.previous-order:hover').index();
+                let warningMessage = confirm('¿Estás seguro/a de borrar este pedido?');
+
+                if (warningMessage === true) {
+                    let getList = JSON.parse(localStorage.getItem('pedidos'));
+
+                    getList.splice(thisIndex, 1);
+                    $('.previous-order:hover').remove();
+
+                    localStorage.setItem('pedidos', JSON.stringify(getList));
+                }
+            }
+
+            //Corrobora la existencia de la lista de pedidos, y la crea si da negativo.
+            createOrdersList() {
+                if (localStorage.getItem('pedidos') == undefined) {
+                    localStorage.setItem('pedidos', '[]');
+                }
+            }
+
+            //Crea una lista desplegable por cada atributo de cierta categoría, con todos sus valores posibles.
+            generateAttributesCombo(elementAttributes) {
+                let totalCombos = $(`<div>`, { class: 'item-attributes' });
+
+                for (let i = 0; i < elementAttributes.length; i++) {
+                    let attributesList = $(`<select>`, { class: 'attributes-combo' });
+                    totalCombos.append(attributesList);
+
+                    for (let j = 0; j < elementAttributes[i].length; j++) {
+                        attributesList.append($('<option>', { value: 1, text: elementAttributes[i][j] }));
+                    }
+                }
+
+                return totalCombos;
+            }
+        }
+
+        //Crea el controlador y el objeto de orden centrales de la app.
+        handler = new Handler();
+        //Ejecuta las bases de la app.
+        handler.initialize();
+        handler.eventsListening();
+    });
+</script>
+</html>
